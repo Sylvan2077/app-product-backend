@@ -28,7 +28,7 @@ def get_static_url(relative_path: str) -> str:
 
 # --- API 路由 ---
 
-@router.get("/products", response_model=List[schemas.Module])
+@router.get("/products", response_model=List[schemas.Module], description="获取产品列表，可选过滤行业和模块")
 async def get_products(industry: Optional[str] = None, subject: Optional[str] = None, db: Session = Depends(get_db)):
     query = db.query(models.Module)
     if industry:
@@ -42,7 +42,7 @@ async def get_products(industry: Optional[str] = None, subject: Optional[str] = 
         mod.image_url = get_static_url(mod.image_url)
     return modules
 
-@router.get("/products/{id}", response_model=schemas.Module)
+@router.get("/products/{id}", response_model=schemas.Module, description="根据ID获取单个产品详情")
 async def get_product(id: int, db: Session = Depends(get_db)):
     module = db.query(models.Module).filter(models.Module.id == id).first()
     if not module:
@@ -51,30 +51,30 @@ async def get_product(id: int, db: Session = Depends(get_db)):
     return module
 
 @router.get("/industries")
-async def get_industries(db: Session = Depends(get_db)):
+async def get_industries(db: Session = Depends(get_db), description="获取行业列表"):
     industries = db.query(distinct(models.Module.industry)).all()
     return [{"name": ind[0]} for ind in industries if ind[0]] # 过滤掉 None 值
 
 @router.get("/modules")
-async def get_modules(db: Session = Depends(get_db)):
+async def get_modules(db: Session = Depends(get_db), description="获取模块列表"):
     subjects = db.query(distinct(models.Module.subject)).all()
     return [{"name": sub[0]} for sub in subjects if sub[0]] # 过滤掉 None 值
 
-@router.get("/cases", response_model=List[schemas.Case])
+@router.get("/cases", response_model=List[schemas.Case], description="获取案例列表")
 async def get_cases(db: Session = Depends(get_db)):
     cases = db.query(models.Case).all()
     for case in cases:
         case.image_url = get_static_url(case.image_url)
     return cases
 
-@router.get("/partners", response_model=List[schemas.Partner])
+@router.get("/partners", response_model=List[schemas.Partner], description="获取合作伙伴列表")
 async def get_partners(db: Session = Depends(get_db)):
     partners = db.query(models.Partner).all()
     for partner in partners:
         partner.logo_url = get_static_url(partner.logo_url)
     return partners
 
-@router.get("/banner", response_model=schemas.BannerInfo)
+@router.get("/banner", response_model=schemas.BannerInfo, description="获取首页Banner信息")
 async def get_banner():
     # 假设 banner 信息是固定的，或从数据库中某个特定记录获取
     # 这里使用示例数据
@@ -84,7 +84,7 @@ async def get_banner():
         img="/static/banner.jpg" # 直接返回静态路径
     )
 
-@router.get("/footer", response_model=schemas.FooterInfo)
+@router.get("/footer", response_model=schemas.FooterInfo, description="获取页脚信息")
 async def get_footer():
     # 假设版本信息是固定的，或从配置文件获取
     return schemas.FooterInfo(
@@ -92,7 +92,7 @@ async def get_footer():
         version="v0.0.1"
     )
 
-@router.post("/import", response_model=schemas.ImportResponse)
+@router.post("/import", response_model=schemas.ImportResponse, description="导入数据，支持JSON格式")
 async def import_data(file: UploadFile = File(...), db: Session = Depends(get_db)):
     if not file.filename.endswith(('.json')):
          raise HTTPException(status_code=400, detail="Only JSON files are allowed")
@@ -143,7 +143,7 @@ async def import_data(file: UploadFile = File(...), db: Session = Depends(get_db
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/export", response_model=schemas.ExportResponse)
+@router.get("/export", response_model=schemas.ExportResponse, description="导出所有数据为JSON文件")
 async def export_data(db: Session = Depends(get_db)):
     # 获取所有数据
     modules = db.query(models.Module).all()
