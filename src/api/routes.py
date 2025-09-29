@@ -8,6 +8,8 @@ import os
 from datetime import datetime
 from src import models, schemas, database
 from typing import List, Optional
+from src.response import BaseResponse
+from src.schemas import Module
 
 router = APIRouter()
 
@@ -28,7 +30,7 @@ def get_static_url(relative_path: str) -> str:
 
 # --- API 路由 ---
 
-@router.get("/products", response_model=List[schemas.Module], description="获取产品列表，可选过滤行业和模块")
+@router.get("/products", response_model=BaseResponse, description="获取产品列表，可选过滤行业和模块")
 async def get_products(industry: Optional[str] = None, subject: Optional[str] = None, db: Session = Depends(get_db)):
     query = db.query(models.Module)
     if industry:
@@ -40,7 +42,21 @@ async def get_products(industry: Optional[str] = None, subject: Optional[str] = 
     # 转换 image_url 为完整的静态 URL
     for mod in modules:
         mod.image_url = get_static_url(mod.image_url)
-    return modules
+    # 转换为字典列表
+    module_list = []
+    for mod in modules:
+        module_dict = {
+            "id": mod.id,
+            "title": mod.title,
+            "description": mod.description,
+            "image_url": mod.image_url,
+            "industry": mod.industry,
+            "subject": mod.subject
+        }
+        module_list.append(module_dict)
+    
+    # 由于 BaseResponse 的 data 定义为 dict，但我们需要返回列表，这里将列表包装在字典中
+    return BaseResponse(code=0, data={"modules": module_list}, msg="success")
 
 @router.get("/products/{id}", response_model=schemas.Module, description="根据ID获取单个产品详情")
 async def get_product(id: int, db: Session = Depends(get_db)):
