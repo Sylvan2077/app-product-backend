@@ -38,4 +38,4 @@ def health_check():
 
 if __name__ == '__main__':
     name_app = os.path.splitext(os.path.basename(__file__))[0]
-    uvicorn.run(app=f"{name_app}:app", host="localhost",port=8000)
+    uvicorn.run(app=f"{name_app}:app", host="0.0.0.0",port=8000)

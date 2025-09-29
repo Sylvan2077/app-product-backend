@@ -37,3 +37,10 @@ class Case(Base):
 
 # 注意：文档中提到 "行业列表" 和 "模块列表"，这些可能是通过 Module 表的 industry 和 subject 字段动态获取的，
 # 或者可以创建单独的 Industry 和 Subject 表。这里我们先假设它们来自 Module 表。
+class Banner(Base):
+    __tablename__ = "banners"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(100))  
+    subtitle = Column(String(100))      
+    img = Column(String(512))      

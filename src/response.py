@@ -5,9 +5,9 @@ class BaseResponse(BaseModel):
     """
     V3 Admin Vite 模板要求的统一响应格式
     """
-    code: int = Field(examples=0, title="业务状态码")
-    data: dict = Field(examples={}, title="响应数据")
-    msg: str = Field(examples="success", title="响应消息")
+    code: int = Field(example=200, title="业务状态码")
+    data: dict = Field(example={'foo': 'bar'}, title="响应数据")
+    msg: str = Field(example="success", title="响应消息")
 
     def __init__(self, code: int = 200, data: dict = None, msg: str = "success"):
         if data is None:

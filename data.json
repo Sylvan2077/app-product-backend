@@ -1,0 +1,141 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "结构优化仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航空",
+      "subject": "结构优化仿真模块"
+    },
+    {
+      "id": 2,
+      "title": "茉莉平台 流体仿真模块",
+      "description": "多相流仿真模块",
+      "image_url": "images/modules/fluid.png",
+      "industry": "船舶",
+      "subject": "多相流仿真模块"
+    },
+    {
+      "id": 3,
+      "title": "茉莉平台 流体仿真模块",
+      "description": "流固耦合仿真模块",
+      "image_url": "images/modules/fluid.png",
+      "industry": "船舶",
+      "subject": "流固耦合仿真模块"
+    },
+    {
+      "id": 4,
+      "title": "茉莉平台 流体仿真模块",
+      "description": "不可压湍流仿真模块",
+      "image_url": "images/modules/fluid.png",
+      "industry": "船舶",
+      "subject": "不可压湍流仿真模块"
+    },
+    {
+      "id": 5,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "冲击动力学仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航空",
+      "subject": "冲击动力学仿真模块"
+    },
+    {
+      "id": 6,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "多体动力学仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航天",
+      "subject": "多体动力学仿真模块"
+    },
+    {
+      "id": 7,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "结构疲劳仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航空",
+      "subject": "结构疲劳仿真模块"
+    },
+    {
+      "id": 8,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "气动弹性仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "兵器",
+      "subject": "气动弹性仿真模块"
+    },
+    {
+      "id": 9,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "声固耦合仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航天",
+      "subject": "声固耦合仿真模块"
+    },
+    {
+      "id": 10,
+      "title": "茉莉平台 结构仿真模块",
+      "description": "结构静力振动屈曲仿真模块",
+      "image_url": "images/modules/struct.png",
+      "industry": "航空",
+      "subject": "结构静力振动屈曲仿真模块"
+    }
+  ],
+  "partners": [
+    {
+      "id": 1,
+      "name": "华为",
+      "logo_url": "partners/huawei.png"
+    },
+    {
+      "id": 2,
+      "name": "中国移动",
+      "logo_url": "partners/mobile.png"
+    },
+    {
+      "id": 3,
+      "name": "中国电信",
+      "logo_url": "partners/telecom.png"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "type": "industry",
+      "name": "航空",
+      "value": "aviation"
+    },
+    {
+      "id": 2,
+      "type": "industry",
+      "name": "船舶",
+      "value": "marine"
+    },
+    {
+      "id": 3,
+      "type": "subject",
+      "name": "结构仿真",
+      "value": "structure"
+    }
+  ],
+  "banners": [
+    {
+        "id": 1,
+        "title": "铸软件基石 擎装备重器",
+        "subtitle": "致力于成为行业领先的仿真软件中心",
+        "img": "images/banners/banner-bg.png"
+    },
+    {
+        "id": 2,
+        "title": "创新驱动 智能仿真",
+        "subtitle": "赋能装备研发，助力产业升级",
+        "img": "images/banners/banner-bg.png"
+    },
+    {
+        "id": 3,
+        "title": "高效协同 可靠保障器",
+        "subtitle": "为用户提供全流程仿真解决方案",
+        "img": "images/banners/banner-bg.png"
+    }
+  ]
+}
