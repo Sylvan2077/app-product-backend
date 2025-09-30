@@ -109,6 +109,27 @@ async def get_modules(db: Session = Depends(get_db)):
     return BaseResponse(code=0, data={"modules": modules_list}, msg="success")
 
 
+@router.get("/statics", response_model=BaseResponse, description="获取去重后的行业和模块列表汇总")
+async def get_industry_subject_summary(db: Session = Depends(get_db)):
+    # 获取去重后的行业列表
+    industries = db.query(distinct(models.Module.industry)).all()
+    industries_list = [ind[0] for ind in industries if ind[0]]  # 过滤掉 None 值
+    
+    # 获取去重后的模块列表
+    subjects = db.query(distinct(models.Module.subject)).all()
+    subjects_list = [sub[0] for sub in subjects if sub[0]]  # 过滤掉 None 值
+    
+    # 返回包含行业和模块列表的响应
+    return BaseResponse(
+        code=0,
+        data={
+            "industries": industries_list,
+            "subjects": subjects_list
+        },
+        msg="success"
+    )
+
+
 @router.get("/cases", response_model=BaseResponse, description="获取案例列表")
 async def get_cases(db: Session = Depends(get_db)):
     cases = db.query(models.Case).all()
