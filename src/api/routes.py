@@ -130,6 +130,40 @@ async def get_industry_subject_summary(db: Session = Depends(get_db)):
     )
 
 
+
+@router.get("/about-us", response_model=BaseResponse, description="获取关于我们列表")
+async def get_about_us(db: Session = Depends(get_db)):
+    about = db.query(models.About).all()
+    about_list = []
+    
+    for entry in about:
+        # 转换url为完整的静态URL
+        about_list.append({
+            "id": entry.id,
+            "title": entry.title,
+            "url": entry.url
+        })
+    
+    contact = db.query(models.Contact).all()
+    contact_list = []
+    for entry in contact:
+        # 转换url为完整的静态URL
+        entry.url = get_static_url(entry.url)
+        contact_list.append({
+            "id": entry.id,
+            "title": entry.title,
+            "url": entry.url
+        })
+    
+    return BaseResponse(
+        code=0,
+        data={
+            "about": about_list,
+            "contact": contact_list
+        },
+        msg="success"
+    )
+
 @router.get("/cases", response_model=BaseResponse, description="获取案例列表")
 async def get_cases(db: Session = Depends(get_db)):
     cases = db.query(models.Case).all()
@@ -197,36 +231,36 @@ async def import_data(file: UploadFile = File(...), db: Session = Depends(get_db
 
         # 开始数据库事务
         db.begin()
-        try:
-            # 清空现有数据 (全量导入)
-            db.query(models.Module).delete()
-            db.query(models.Partner).delete()
-            db.query(models.Client).delete()
-            db.query(models.Case).delete()
+        # try:
+        #     # 清空现有数据 (全量导入)
+        #     db.query(models.Module).delete()
+        #     db.query(models.Partner).delete()
+        #     db.query(models.Client).delete()
+        #     db.query(models.Case).delete()
 
-            # 插入新数据
-            modules_data = data.get("modules", [])
-            partners_data = data.get("partners", [])
-            clients_data = data.get("clients", [])
-            cases_data = data.get("cases", [])
+        #     # 插入新数据
+        #     modules_data = data.get("modules", [])
+        #     partners_data = data.get("partners", [])
+        #     clients_data = data.get("clients", [])
+        #     cases_data = data.get("cases", [])
 
-            for mod_data in modules_data:
-                mod = models.Module(**mod_data)
-                db.add(mod)
-            for partner_data in partners_data:
-                partner = models.Partner(**partner_data)
-                db.add(partner)
-            for client_data in clients_data:
-                client = models.Client(**client_data)
-                db.add(client)
-            for case_data in cases_data:
-                case = models.Case(**case_data)
-                db.add(case)
+        #     for mod_data in modules_data:
+        #         mod = models.Module(**mod_data)
+        #         db.add(mod)
+        #     for partner_data in partners_data:
+        #         partner = models.Partner(**partner_data)
+        #         db.add(partner)
+        #     for client_data in clients_data:
+        #         client = models.Client(**client_data)
+        #         db.add(client)
+        #     for case_data in cases_data:
+        #         case = models.Case(**case_data)
+        #         db.add(case)
 
-            db.commit()
-        except Exception as e:
-            db.rollback()
-            raise HTTPException(status_code=500, detail=f"Import failed: {str(e)}")
+        #     db.commit()
+        # except Exception as e:
+        #     db.rollback()
+        #     raise HTTPException(status_code=500, detail=f"Import failed: {str(e)}")
 
         return BaseResponse(
             code=0,
@@ -288,4 +322,3 @@ async def export_data(db: Session = Depends(get_db)):
     #     #         zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(os.getcwd())))
 
     return BaseResponse(code=0, data={"filename": filename}, msg="导出成功")
-

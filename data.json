@@ -137,5 +137,44 @@
         "subtitle": "为用户提供全流程仿真解决方案",
         "img": "images/banners/banner-bg.png"
     }
+  ],
+  "about": [
+    {
+        "id": 1,
+        "title": "中心介绍",
+        "url": "https://www.baidu.com"
+    },
+    {
+        "id": 2,
+        "title": "中心文化",
+        "url": "https://www.baidu.com"
+    },
+    {
+        "id": 3,
+        "title": "XXXXX",
+        "url": "https://www.baidu.com"
+    }
+  ],
+  "contact": [
+    {
+        "id": 1,
+        "title": "010-8XXXXXXXX",
+        "url": ""
+    },
+    {
+        "id": 2,
+        "title": "邮编：111110",
+        "url": ""
+    },
+    {
+        "id": 3,
+        "title": "地址：北京市海淀区某某路一号",
+        "url": ""
+    },
+    {
+        "id": 4,
+        "title": "软件中心公众号",
+        "url": "images/about_us/wxewm.jpg"
+    }
   ]
 }

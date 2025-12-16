@@ -44,3 +44,17 @@ class Banner(Base):
     title = Column(String(100))  
     subtitle = Column(String(100))      
     img = Column(String(512))      
+
+class About(Base):
+    __tablename__ = "about"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(100))  
+    url = Column(String(512))      
+
+class Contact(Base):
+    __tablename__ = "contact"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(100))  
+    url = Column(String(512), nullable=True)      
