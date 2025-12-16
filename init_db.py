@@ -26,12 +26,10 @@ def init_db():
 def import_data(db):
     json_file_path = "data.json"
     
-    # 检查JSON文件是否存在
     if not os.path.exists(json_file_path):
         raise FileNotFoundError(f"文件 {json_file_path} 未找到")
         return
     
-    # 从JSON文件读取数据
     with open(json_file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
         

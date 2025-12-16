@@ -1,0 +1,33 @@
+2025-12-16 11:32:51,774 - src.service.init_db - INFO - 跳过已存在的数据（ID: 1，模型: Module）
+2025-12-16 11:32:51,775 - src.service.init_db - INFO - 跳过已存在的数据（ID: 2，模型: Module）
+2025-12-16 11:32:51,775 - src.service.init_db - INFO - 跳过已存在的数据（ID: 3，模型: Module）
+2025-12-16 11:32:51,776 - src.service.init_db - INFO - 跳过已存在的数据（ID: 4，模型: Module）
+2025-12-16 11:32:51,776 - src.service.init_db - INFO - 跳过已存在的数据（ID: 5，模型: Module）
+2025-12-16 11:32:51,777 - src.service.init_db - INFO - 跳过已存在的数据（ID: 6，模型: Module）
+2025-12-16 11:32:51,777 - src.service.init_db - INFO - 跳过已存在的数据（ID: 7，模型: Module）
+2025-12-16 11:32:51,778 - src.service.init_db - INFO - 跳过已存在的数据（ID: 8，模型: Module）
+2025-12-16 11:32:51,778 - src.service.init_db - INFO - 跳过已存在的数据（ID: 9，模型: Module）
+2025-12-16 11:32:51,778 - src.service.init_db - INFO - 跳过已存在的数据（ID: 10，模型: Module）
+2025-12-16 11:32:51,779 - src.service.init_db - INFO - Module数据处理完成：添加 0 条，跳过 10 条
+2025-12-16 11:32:51,780 - src.service.init_db - INFO - 跳过已存在的数据（ID: 1，模型: Partner）
+2025-12-16 11:32:51,780 - src.service.init_db - INFO - 跳过已存在的数据（ID: 2，模型: Partner）
+2025-12-16 11:32:51,781 - src.service.init_db - INFO - 跳过已存在的数据（ID: 3，模型: Partner）
+2025-12-16 11:32:51,781 - src.service.init_db - INFO - Partner数据处理完成：添加 0 条，跳过 3 条
+2025-12-16 11:32:51,782 - src.service.init_db - INFO - 跳过已存在的数据（ID: 1，模型: Banner）
+2025-12-16 11:32:51,783 - src.service.init_db - INFO - 跳过已存在的数据（ID: 2，模型: Banner）
+2025-12-16 11:32:51,786 - src.service.init_db - INFO - 跳过已存在的数据（ID: 3，模型: Banner）
+2025-12-16 11:32:51,803 - src.service.init_db - INFO - Banner数据处理完成：添加 0 条，跳过 3 条
+2025-12-16 11:32:51,805 - src.service.init_db - INFO - 跳过已存在的数据（ID: 1，模型: About）
+2025-12-16 11:32:51,806 - src.service.init_db - INFO - 跳过已存在的数据（ID: 2，模型: About）
+2025-12-16 11:32:51,806 - src.service.init_db - INFO - 跳过已存在的数据（ID: 3，模型: About）
+2025-12-16 11:32:51,807 - src.service.init_db - INFO - About数据处理完成：添加 0 条，跳过 3 条
+2025-12-16 11:32:51,808 - src.service.init_db - INFO - 跳过已存在的数据（ID: 1，模型: Contact）
+2025-12-16 11:32:51,817 - src.service.init_db - INFO - 跳过已存在的数据（ID: 2，模型: Contact）
+2025-12-16 11:32:51,818 - src.service.init_db - INFO - 跳过已存在的数据（ID: 3，模型: Contact）
+2025-12-16 11:32:51,839 - src.service.init_db - INFO - 跳过已存在的数据（ID: 4，模型: Contact）
+2025-12-16 11:32:51,839 - src.service.init_db - INFO - Contact数据处理完成：添加 0 条，跳过 4 条
+2025-12-16 11:32:51,841 - src.service.init_db - INFO - 跳过已存在的客户端数据（ID: 1）
+2025-12-16 11:32:51,842 - src.service.init_db - INFO - 跳过已存在的客户端数据（ID: 2）
+2025-12-16 11:32:51,844 - src.service.init_db - INFO - 跳过已存在的客户端数据（ID: 3）
+2025-12-16 11:32:51,844 - src.service.init_db - INFO - Client数据处理完成：添加 0 条，跳过 3 条
+2025-12-16 11:32:51,844 - src.service.init_db - INFO - 数据库初始化成功

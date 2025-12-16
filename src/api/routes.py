@@ -10,6 +10,7 @@ from src import models, schemas, database
 from typing import List, Optional
 from src.response import BaseResponse
 from src.schemas import Module
+from src.service.init_db import DatabaseImportData
 
 router = APIRouter()
 
@@ -75,7 +76,7 @@ async def get_products(
 
 
 @router.get(
-    "/products/{id}", response_model=BaseResponse, description="根据ID获取单个产品详情"
+    "/products/{id}", response_model=BaseResponse, description="根据ID获取单个产品详情", deprecated=True
 )
 async def get_product(id: int, db: Session = Depends(get_db)):
     module = db.query(models.Module).filter(models.Module.id == id).first()
@@ -164,7 +165,7 @@ async def get_about_us(db: Session = Depends(get_db)):
         msg="success"
     )
 
-@router.get("/cases", response_model=BaseResponse, description="获取案例列表")
+@router.get("/cases", response_model=BaseResponse, description="获取案例列表", deprecated=True)
 async def get_cases(db: Session = Depends(get_db)):
     cases = db.query(models.Case).all()
     cases_list = []
@@ -211,7 +212,7 @@ async def get_banner(db: Session = Depends(get_db)):
     return BaseResponse(code=0, data={"banners": banner_info}, msg="success")
 
 
-@router.get("/footer", response_model=BaseResponse, description="获取页脚信息")
+@router.get("/footer", response_model=BaseResponse, description="获取页脚信息", deprecated=True)
 async def get_footer():
     # 假设版本信息是固定的，或从配置文件获取
     footer_info = {"message": "成功", "version": "v0.0.1"}
@@ -230,37 +231,8 @@ async def import_data(file: UploadFile = File(...), db: Session = Depends(get_db
         data = json.loads(contents.decode("utf-8"))
 
         # 开始数据库事务
-        db.begin()
-        # try:
-        #     # 清空现有数据 (全量导入)
-        #     db.query(models.Module).delete()
-        #     db.query(models.Partner).delete()
-        #     db.query(models.Client).delete()
-        #     db.query(models.Case).delete()
-
-        #     # 插入新数据
-        #     modules_data = data.get("modules", [])
-        #     partners_data = data.get("partners", [])
-        #     clients_data = data.get("clients", [])
-        #     cases_data = data.get("cases", [])
-
-        #     for mod_data in modules_data:
-        #         mod = models.Module(**mod_data)
-        #         db.add(mod)
-        #     for partner_data in partners_data:
-        #         partner = models.Partner(**partner_data)
-        #         db.add(partner)
-        #     for client_data in clients_data:
-        #         client = models.Client(**client_data)
-        #         db.add(client)
-        #     for case_data in cases_data:
-        #         case = models.Case(**case_data)
-        #         db.add(case)
-
-        #     db.commit()
-        # except Exception as e:
-        #     db.rollback()
-        #     raise HTTPException(status_code=500, detail=f"Import failed: {str(e)}")
+        initializer = DatabaseImportData()
+        initializer.init_db(data)
 
         return BaseResponse(
             code=0,
